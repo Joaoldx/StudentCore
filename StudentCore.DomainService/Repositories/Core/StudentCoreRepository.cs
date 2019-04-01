@@ -16,7 +16,10 @@ namespace StudentCore.DomainService.Repositories.Core
         {
             _context.Add(entity);
         }
-
+        public void Update<T>(T entity) where T : class
+        {
+            throw new NotImplementedException();
+        }
         public void Delete<T>(T entity) where T : class
         {
             _context.Remove(entity);
@@ -26,17 +29,18 @@ namespace StudentCore.DomainService.Repositories.Core
         public async Task<ICollection<Student>> GetAllStudentsAsync()
         {
             return await _context.Students.ToListAsync();
-
         }
 
-        public Task<ICollection<Student>> GetAllStudentsByIdAsync(Guid id)
+        public async Task<Student> GetStudentByIdAsync(Guid Id)
         {
-            throw new NotImplementedException();
+            return await _context.Students.FirstAsync(student => student.Id == Id);
         }
 
-        public Task<ICollection<Student>> GetAllStudentsByNameAsync(string name)
+        public async Task<ICollection<Student>> GetAllStudentsByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            return await _context.Students            
+            .Where(student =>
+                student.Name.ToLower().Contains(name.ToLower())).ToListAsync();
         }
 
         // TEACHER
@@ -45,7 +49,7 @@ namespace StudentCore.DomainService.Repositories.Core
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Teacher>> GetAllTeachersByIdAsync(Guid id)
+        public Task<Teacher> GetTeacherByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -60,9 +64,5 @@ namespace StudentCore.DomainService.Repositories.Core
             return (await _context.SaveChangesAsync()) > 0;
         }
 
-        public void Update<T>(T entity) where T : class
-        {
-            throw new NotImplementedException();
-        }
     }
 }

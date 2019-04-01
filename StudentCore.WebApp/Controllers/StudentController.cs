@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,17 @@ namespace StudentCore.WebApp.Controllers
             }
         } 
 
+        [HttpGet("getById/{studentId}")]
+        public async Task<Student> GetById(Guid studentId)
+        {
+            return await _repositopry.GetStudentByIdAsync(studentId);
+        }
+        [HttpGet("GetByName/{studentName}")]
+        public async Task<ICollection<Student>> GetByName(string studentName)
+        {
+            return await _repositopry.GetAllStudentsByNameAsync(studentName);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(Student student){
             try {
@@ -37,6 +49,57 @@ namespace StudentCore.WebApp.Controllers
             catch (System.Exception) {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco Dados Falhou");
             }
+            return BadRequest();
+        }
+
+
+        [HttpPut]
+        public async Task<IActionResult> Post(Guid studentId, Student model)
+        {
+            try
+            {
+                var student = await _repositopry.GetStudentByIdAsync(studentId);
+
+                if (student == null) {
+                    return NotFound();
+                }
+                
+                _repositopry.Update(model);
+
+                if (await _repositopry.SaveChangesAsync()) {
+                    return Created($"/api/student/{model.Id}", model);
+                }
+            } 
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco Dados Falhou");
+            }
+
+            return BadRequest();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Post(Guid studentId)
+        {
+            try
+            {
+                var student = await _repositopry.GetStudentByIdAsync(studentId);
+                if (student == null) {
+                    return NotFound();
+                }
+
+                
+                _repositopry.Delete(student);
+
+                if (await _repositopry.SaveChangesAsync()) {
+                    return Ok();
+                }
+            } 
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco Dados Falhou");
+            }
+
             return BadRequest();
         }
     }

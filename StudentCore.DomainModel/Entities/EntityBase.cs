@@ -13,5 +13,7 @@ namespace StudentCore.DomainModel.Entities
         public string email { get; set; }
 
         public string Telephone { get; set; }
+
+        public string PhotoURL { get; set; }
     }
 }

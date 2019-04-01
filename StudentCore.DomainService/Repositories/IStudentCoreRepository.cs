@@ -19,14 +19,14 @@ namespace StudentCore.DomainService.Repositories
         // STUDENTS
          Task<ICollection<Student>> GetAllStudentsAsync();
 
-         Task<ICollection<Student>> GetAllStudentsByIdAsync(Guid id);
+         Task<Student> GetStudentByIdAsync(Guid id);
 
          Task<ICollection<Student>> GetAllStudentsByNameAsync(string name);
 
 
         //TEACHER
         Task<ICollection<Teacher>> GetAllTeachersAsync();
-        Task<ICollection<Teacher>> GetAllTeachersByIdAsync(Guid id);
+        Task<Teacher> GetTeacherByIdAsync(Guid id);
         Task<ICollection<Teacher>> GetAllTeachersByNameAsync(string name);
 
 
