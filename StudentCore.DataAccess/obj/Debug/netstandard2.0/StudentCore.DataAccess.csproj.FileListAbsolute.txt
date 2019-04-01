@@ -1,0 +1,12 @@
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DataAccess\bin\Debug\netstandard2.0\StudentCore.DataAccess.deps.json
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DataAccess\bin\Debug\netstandard2.0\StudentCore.DataAccess.dll
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DataAccess\bin\Debug\netstandard2.0\StudentCore.DataAccess.pdb
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DataAccess\bin\Debug\netstandard2.0\StudentCore.DomainModel.dll
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DataAccess\bin\Debug\netstandard2.0\StudentCore.DomainModel.pdb
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DataAccess\obj\Debug\netstandard2.0\StudentCore.DataAccess.csprojAssemblyReference.cache
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DataAccess\obj\Debug\netstandard2.0\StudentCore.DataAccess.csproj.CoreCompileInputs.cache
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DataAccess\obj\Debug\netstandard2.0\StudentCore.DataAccess.AssemblyInfoInputs.cache
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DataAccess\obj\Debug\netstandard2.0\StudentCore.DataAccess.AssemblyInfo.cs
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DataAccess\obj\Debug\netstandard2.0\StudentCore.DataAccess.csproj.CopyComplete
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DataAccess\obj\Debug\netstandard2.0\StudentCore.DataAccess.dll
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DataAccess\obj\Debug\netstandard2.0\StudentCore.DataAccess.pdb

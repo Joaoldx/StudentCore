@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\StudentCore.DataAccess\StudentCore.DataAccess.csproj" />
+    <ProjectReference Include="..\StudentCore.DomainService\StudentCore.DomainService.csproj" />
+    <ProjectReference Include="..\StudentCore.DomainModel\StudentCore.DomainModel.csproj" />
+  </ItemGroup>
+
+</Project>

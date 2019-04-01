@@ -1,0 +1,14 @@
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\bin\Debug\netstandard2.0\StudentCore.DomainService.deps.json
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\bin\Debug\netstandard2.0\StudentCore.DomainService.dll
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\bin\Debug\netstandard2.0\StudentCore.DomainService.pdb
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\bin\Debug\netstandard2.0\StudentCore.DataAccess.dll
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\bin\Debug\netstandard2.0\StudentCore.DomainModel.dll
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\bin\Debug\netstandard2.0\StudentCore.DomainModel.pdb
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\bin\Debug\netstandard2.0\StudentCore.DataAccess.pdb
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\obj\Debug\netstandard2.0\StudentCore.DomainService.csprojAssemblyReference.cache
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\obj\Debug\netstandard2.0\StudentCore.DomainService.csproj.CoreCompileInputs.cache
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\obj\Debug\netstandard2.0\StudentCore.DomainService.AssemblyInfoInputs.cache
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\obj\Debug\netstandard2.0\StudentCore.DomainService.AssemblyInfo.cs
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\obj\Debug\netstandard2.0\StudentCore.DomainService.csproj.CopyComplete
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\obj\Debug\netstandard2.0\StudentCore.DomainService.dll
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainService\obj\Debug\netstandard2.0\StudentCore.DomainService.pdb

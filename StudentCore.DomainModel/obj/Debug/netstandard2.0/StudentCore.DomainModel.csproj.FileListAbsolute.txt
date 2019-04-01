@@ -1,0 +1,9 @@
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainModel\bin\Debug\netstandard2.0\StudentCore.DomainModel.deps.json
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainModel\bin\Debug\netstandard2.0\StudentCore.DomainModel.dll
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainModel\bin\Debug\netstandard2.0\StudentCore.DomainModel.pdb
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainModel\obj\Debug\netstandard2.0\StudentCore.DomainModel.csprojAssemblyReference.cache
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainModel\obj\Debug\netstandard2.0\StudentCore.DomainModel.csproj.CoreCompileInputs.cache
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainModel\obj\Debug\netstandard2.0\StudentCore.DomainModel.AssemblyInfoInputs.cache
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainModel\obj\Debug\netstandard2.0\StudentCore.DomainModel.AssemblyInfo.cs
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainModel\obj\Debug\netstandard2.0\StudentCore.DomainModel.dll
+P:\NovosProjetos\CSharp\StudentCore\StudentCore.DomainModel\obj\Debug\netstandard2.0\StudentCore.DomainModel.pdb
