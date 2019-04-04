@@ -32,7 +32,8 @@ namespace StudentCore.WebApp.Controllers
         {
             return await _repositopry.GetStudentByIdAsync(studentId);
         }
-        [HttpGet("GetByName/{studentName}")]
+
+        [HttpGet("getByName/{studentName}")]
         public async Task<ICollection<Student>> GetByName(string studentName)
         {
             return await _repositopry.GetAllStudentsByNameAsync(studentName);
