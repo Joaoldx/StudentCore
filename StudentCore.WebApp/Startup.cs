@@ -50,7 +50,14 @@ namespace StudentCore.WebApp
                 app.UseHsts();
             }
 
-            app.UseCors();
+            app.UseCors(builder =>
+            {
+                    builder.AllowAnyHeader();
+                    builder.AllowAnyMethod();
+                    builder.AllowCredentials();
+                    builder.AllowAnyOrigin(); // For anyone access.
+                    builder.WithOrigins("http://localhost:8080", "http://localhost:5000/api/student"); // for a specific url.
+            });
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
