@@ -21,7 +21,7 @@ namespace StudentCore.WebApp.Controllers
         {
             try
             {
-                var results = await _repositopry.GetAllStudentsAsync();
+                var results = await _repositopry.GetAllTeachersAsync();
                 return Ok(results);
             }
             catch (System.Exception)
@@ -36,10 +36,10 @@ namespace StudentCore.WebApp.Controllers
             return await _repositopry.GetTeacherByIdAsync(teacherId);
         }
 
-        [HttpGet("getByName/{studentName}")]
-        public async Task<ICollection<Student>> GetByName(string teacherName)
+        [HttpGet("getByName/{teacherName}")]
+        public async Task<ICollection<Teacher>> GetByName(string teacherName)
         {
-            return await _repositopry.GetAllStudentsByNameAsync(teacherName);
+            return await _repositopry.GetAllTeachersByNameAsync(teacherName);
         }
 
         [HttpPost]
@@ -50,7 +50,7 @@ namespace StudentCore.WebApp.Controllers
                 _repositopry.Add(teacher);
                 if (await _repositopry.SaveChangesAsync())
                 {
-                    return Created($"/api/student/{teacher.Id}", teacher);
+                    return Created($"/api/teacher/{teacher.Id}", teacher);
                 }
             }
             catch (System.Exception)
@@ -65,7 +65,7 @@ namespace StudentCore.WebApp.Controllers
         {
             try
             {
-                var teacher = await _repositopry.GetStudentByIdAsync(teacherId);
+                var teacher = await _repositopry.GetTeacherByIdAsync(teacherId);
 
                 if (teacher == null)
                 {
@@ -76,7 +76,7 @@ namespace StudentCore.WebApp.Controllers
 
                 if (await _repositopry.SaveChangesAsync())
                 {
-                    return Created($"/api/student/{model.Id}", model);
+                    return Created($"/api/teacher/{model.Id}", model);
                 }
             }
             catch (System.Exception)
@@ -92,7 +92,7 @@ namespace StudentCore.WebApp.Controllers
         {
             try
             {
-                var teacher = await _repositopry.GetStudentByIdAsync(teacherId);
+                var teacher = await _repositopry.GetTeacherByIdAsync(teacherId);
                 if (teacher == null)
                 {
                     return NotFound();
