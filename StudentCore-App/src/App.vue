@@ -1,17 +1,15 @@
 <template>
   <div id="app">
     <Nav />
-    <Student />
+    <router-view />
   </div>
 </template>
 
 <script>
-import Student from './components/Student/Student.vue';
 import Nav from './components/_nav/Nav.vue';
 
 export default {
   components: {
-    Student,
     Nav
   }
 }

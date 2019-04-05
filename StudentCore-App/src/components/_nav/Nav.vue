@@ -2,9 +2,11 @@
     <div>
         <b-container>
             <b-nav justified tabs>
-                <b-nav-item active>Home</b-nav-item>
-                <b-nav-item>Alunos</b-nav-item>
-                <b-nav-item>Professores</b-nav-item>
+<!--                <router-link to="/student">Alunos</router-link>-->
+<!--                <router-link to="/teacher">Professores</router-link>-->
+                <b-nav-item>Home</b-nav-item>
+                <b-nav-item><router-link to="/Student">Alunos</router-link></b-nav-item>
+                <b-nav-item><router-link to="/Teacher">Professores</router-link></b-nav-item>
                 <b-nav-item >Grupos</b-nav-item>
                 <b-nav-item-dropdown
                         id="my-nav-dropdown"

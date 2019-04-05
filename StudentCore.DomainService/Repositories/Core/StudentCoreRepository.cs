@@ -44,19 +44,21 @@ namespace StudentCore.DomainService.Repositories.Core
         }
 
         // TEACHER
-        public Task<ICollection<Teacher>> GetAllTeachersAsync()
+        public async Task<ICollection<Teacher>> GetAllTeachersAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Teachers.ToListAsync();
         }
 
-        public Task<Teacher> GetTeacherByIdAsync(Guid id)
+        public async Task<Teacher> GetTeacherByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await _context.Teachers.FirstAsync(teacher => teacher.Id == id);
         }
 
-        public Task<ICollection<Teacher>> GetAllTeachersByNameAsync(string name)
+        public async Task<ICollection<Teacher>> GetAllTeachersByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            return await _context.Teachers
+               .Where(teacher =>
+                   teacher.Name.ToLower().Contains(name.ToLower())).ToListAsync();
         }
 
         public async Task<bool> SaveChangesAsync()
