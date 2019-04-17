@@ -8,12 +8,5 @@ namespace StudentCore.DomainModel.Entities
 
         public string Name { get; set; }
 
-        public DateTime Birthday { get; set; }
-
-        public string email { get; set; }
-
-        public string Telephone { get; set; }
-
-        public string PhotoURL { get; set; }
     }
 }

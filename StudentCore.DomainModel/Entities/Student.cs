@@ -1,6 +1,6 @@
 namespace StudentCore.DomainModel.Entities
 {
-    public class Student : EntityBase
+    public class Student : Person
     {
         
     }

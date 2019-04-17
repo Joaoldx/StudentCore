@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-
+using AutoMapper;
 using StudentCore.DomainModel.Entities;
 using StudentCore.DomainService.Repositories;
 using StudentCore.DomainService.Repositories.Core;
+using StudentCore.WebApp.Dtos;
+using StudentCore.WebApp.Helpers;
 
 namespace StudentCore.WebApp.Controllers
 {
@@ -15,15 +17,21 @@ namespace StudentCore.WebApp.Controllers
     public class StudentController : ControllerBase
     {
         private readonly IStudentCoreRepository _repositopry = new StudentCoreRepository();
+        private readonly IMapper _mapper;
+        public StudentController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
 
         [HttpGet]
         public async Task<IActionResult> Get() {
             try {
                 var results = await _repositopry.GetAllStudentsAsync();
-                return Ok(results);
+                var studentDtos = _mapper.Map<IEnumerable<StudentDto>>(results);
+                return Ok(studentDtos);
             }
-            catch (System.Exception) {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco Dados Falhou");
+            catch (System.Exception ex) {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Banco Dados Falhou {ex.Message}");
             }
         } 
 
@@ -40,22 +48,26 @@ namespace StudentCore.WebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Student student){
-            try {
+        public async Task<IActionResult> Post(StudentDto model){
+            try
+            {
+                var student = _mapper.Map<Student>(model);    
+                
                 _repositopry.Add(student);
+                
                 if (await _repositopry.SaveChangesAsync()) {
-                    return Created($"/api/student/{student.Id}", student);
+                    return Created($"/api/student/{model.Id}", _mapper.Map<StudentDto>(student));
                 }
             }
-            catch (System.Exception) {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco Dados Falhou");
+            catch (System.Exception ex) {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Banco Dados Falhou {ex.Message}");
             }
             return BadRequest();
         }
 
 
-        [HttpPut]
-        public async Task<IActionResult> Post(Guid studentId, Student model)
+        [HttpPut("{StudentId}")]
+        public async Task<IActionResult> Put(Guid studentId, StudentDto model)
         {
             try
             {
@@ -64,23 +76,25 @@ namespace StudentCore.WebApp.Controllers
                 if (student == null) {
                     return NotFound();
                 }
+
+                _mapper.Map(model, student);
                 
-                _repositopry.Update(model);
+                _repositopry.Update(student);
 
                 if (await _repositopry.SaveChangesAsync()) {
-                    return Created($"/api/student/{model.Id}", model);
+                    return Created($"/api/student/{model.Id}", _mapper.Map<StudentDto>(student));
                 }
             } 
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco Dados Falhou");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Banco Dados Falhou {ex.Message}");
             }
 
             return BadRequest();
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> Post(Guid studentId)
+        [HttpDelete("{StudentId}")]
+        public async Task<IActionResult> Delete(Guid studentId)
         {
             try
             {

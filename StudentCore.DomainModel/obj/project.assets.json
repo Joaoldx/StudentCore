@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "P:\\NovosProjetos\\CSharp\\StudentCore\\StudentCore.DomainModel\\StudentCore.DomainModel.csproj",
+      "projectUniqueName": "p:\\NovosProjetos\\CSharp\\StudentCore\\StudentCore.DomainModel\\StudentCore.DomainModel.csproj",
       "projectName": "StudentCore.DomainModel",
-      "projectPath": "P:\\NovosProjetos\\CSharp\\StudentCore\\StudentCore.DomainModel\\StudentCore.DomainModel.csproj",
+      "projectPath": "p:\\NovosProjetos\\CSharp\\StudentCore\\StudentCore.DomainModel\\StudentCore.DomainModel.csproj",
       "packagesPath": "C:\\Users\\Joao\\.nuget\\packages\\",
-      "outputPath": "P:\\NovosProjetos\\CSharp\\StudentCore\\StudentCore.DomainModel\\obj\\",
+      "outputPath": "p:\\NovosProjetos\\CSharp\\StudentCore\\StudentCore.DomainModel\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -18,7 +18,7 @@ namespace StudentCore.DomainService.Repositories.Core
         }
         public void Update<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            _context.Update(entity);
         }
         public void Delete<T>(T entity) where T : class
         {
@@ -63,7 +63,7 @@ namespace StudentCore.DomainService.Repositories.Core
 
         public async Task<bool> SaveChangesAsync()
         {
-            return (await _context.SaveChangesAsync()) > 0;
+            return await _context.SaveChangesAsync() > 0;
         }
 
     }
