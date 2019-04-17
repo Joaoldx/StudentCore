@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using AutoMapper;
+using StudentCore.DataAccess.Context;
 using StudentCore.DomainModel.Entities;
 using StudentCore.DomainService.Repositories;
 using StudentCore.DomainService.Repositories.Core;
@@ -16,11 +17,13 @@ namespace StudentCore.WebApp.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private readonly IStudentCoreRepository _repositopry = new StudentCoreRepository();
+        private readonly ApplicationDbContext _context;
+        private readonly IStudentCoreRepository _repositopry;
         private readonly IMapper _mapper;
-        public StudentController(IMapper mapper)
+        public StudentController(IMapper mapper, StudentCoreRepository repository)
         {
             _mapper = mapper;
+            _repositopry = repository;
         }
 
         [HttpGet]

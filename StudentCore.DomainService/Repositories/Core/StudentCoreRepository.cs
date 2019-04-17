@@ -10,7 +10,12 @@ namespace StudentCore.DomainService.Repositories.Core
 {
     public class StudentCoreRepository : IStudentCoreRepository
     {
-        private readonly ApplicationDbContext _context = new ApplicationDbContext();
+        private readonly ApplicationDbContext _context;
+
+        public StudentCoreRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         public void Add<T>(T entity) where T : class
         {
