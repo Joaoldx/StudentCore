@@ -38,7 +38,8 @@ namespace StudentCore.WebApp
         {
 
             services.AddDbContext<ApplicationDbContext>(x =>
-                x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            );
             
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -76,20 +77,19 @@ namespace StudentCore.WebApp
                     }
                 );
 
-            services.AddScoped<IStudentCoreRepository, StudentCoreRepository>();
             services.AddMvc(options => {
                     var policy = new AuthorizationPolicyBuilder()
                         .RequireAuthenticatedUser()
                         .Build();
                     options.Filters.Add(new AuthorizeFilter(policy));
                 })
-                .AddControllersAsServices()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             
-            services.AddCors();
+            services.AddScoped<IStudentCoreRepository, StudentCoreRepository>();
             services.AddAutoMapper();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -106,7 +106,6 @@ namespace StudentCore.WebApp
                 app.UseHsts();
             }
             
-            app.UseAuthentication();
 
             app.UseCors(builder =>
             {
@@ -114,12 +113,13 @@ namespace StudentCore.WebApp
                     builder.AllowAnyMethod();
                     builder.AllowCredentials();
                     builder.AllowAnyOrigin(); // For anyone access.
-                    builder.WithOrigins("http://localhost:8080", "http://localhost:5000/api/student"); // for a specific url.
+                    builder.WithOrigins("http://localhost:8080", "http://localhost:5000/api/student", "http://localhost:4200"); // for a specific url.
             });
             //app.UseHttpsRedirection();
+            
+            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            
             app.UseMvc();
 
 //            app.UseMvc(routes =>

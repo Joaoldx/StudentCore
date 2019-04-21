@@ -17,19 +17,18 @@ namespace StudentCore.WebApp.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IStudentCoreRepository _repositopry;
+        private readonly IStudentCoreRepository _repository;
         private readonly IMapper _mapper;
-        public StudentController(IMapper mapper, StudentCoreRepository repository)
+        public StudentController(IMapper mapper, IStudentCoreRepository repository)
         {
             _mapper = mapper;
-            _repositopry = repository;
+            _repository = repository;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get() {
             try {
-                var results = await _repositopry.GetAllStudentsAsync();
+                var results = await _repository.GetAllStudentsAsync();
                 var studentDtos = _mapper.Map<IEnumerable<StudentDto>>(results);
                 return Ok(studentDtos);
             }
@@ -41,13 +40,13 @@ namespace StudentCore.WebApp.Controllers
         [HttpGet("getById/{studentId}")]
         public async Task<Student> GetById(Guid studentId)
         {
-            return await _repositopry.GetStudentByIdAsync(studentId);
+            return await _repository.GetStudentByIdAsync(studentId);
         }
 
         [HttpGet("getByName/{studentName}")]
         public async Task<ICollection<Student>> GetByName(string studentName)
         {
-            return await _repositopry.GetAllStudentsByNameAsync(studentName);
+            return await _repository.GetAllStudentsByNameAsync(studentName);
         }
 
         [HttpPost]
@@ -56,9 +55,9 @@ namespace StudentCore.WebApp.Controllers
             {
                 var student = _mapper.Map<Student>(model);    
                 
-                _repositopry.Add(student);
+                _repository.Add(student);
                 
-                if (await _repositopry.SaveChangesAsync()) {
+                if (await _repository.SaveChangesAsync()) {
                     return Created($"/api/student/{model.Id}", _mapper.Map<StudentDto>(student));
                 }
             }
@@ -74,7 +73,7 @@ namespace StudentCore.WebApp.Controllers
         {
             try
             {
-                var student = await _repositopry.GetStudentByIdAsync(studentId);
+                var student = await _repository.GetStudentByIdAsync(studentId);
 
                 if (student == null) {
                     return NotFound();
@@ -82,9 +81,9 @@ namespace StudentCore.WebApp.Controllers
 
                 _mapper.Map(model, student);
                 
-                _repositopry.Update(student);
+                _repository.Update(student);
 
-                if (await _repositopry.SaveChangesAsync()) {
+                if (await _repository.SaveChangesAsync()) {
                     return Created($"/api/student/{model.Id}", _mapper.Map<StudentDto>(student));
                 }
             } 
@@ -101,15 +100,15 @@ namespace StudentCore.WebApp.Controllers
         {
             try
             {
-                var student = await _repositopry.GetStudentByIdAsync(studentId);
+                var student = await _repository.GetStudentByIdAsync(studentId);
                 if (student == null) {
                     return NotFound();
                 }
 
                 
-                _repositopry.Delete(student);
+                _repository.Delete(student);
 
-                if (await _repositopry.SaveChangesAsync()) {
+                if (await _repository.SaveChangesAsync()) {
                     return Ok();
                 }
             } 
