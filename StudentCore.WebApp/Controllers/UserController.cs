@@ -12,7 +12,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using StudentCore.DomainModel.Entities;
 using StudentCore.DomainModel.Identity;
+using StudentCore.DomainService.Repositories;
 using StudentCore.WebApp.Dtos;
 
 namespace StudentCore.WebApp.Controllers
@@ -25,16 +27,20 @@ namespace StudentCore.WebApp.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IMapper _mapper;
+        private StudentController _studentController;
+        private readonly IStudentCoreRepository _repository;
     
         public UserController(IConfiguration config,
                               UserManager<User> userManager,
                               SignInManager<User> signInManager,
-                              IMapper mapper)
+                              IMapper mapper,
+                              IStudentCoreRepository repository)
         {
-                                 _signInManager = signInManager;
-                                 _mapper = mapper;
-          _config = config;
-          _userManager = userManager;
+            _signInManager = signInManager;
+            _mapper = mapper;
+            _config = config;
+            _userManager = userManager;
+            _repository = repository;
         }
     
         [HttpGet("GetUser")]
@@ -50,11 +56,47 @@ namespace StudentCore.WebApp.Controllers
         {
             try
             {
+                // creating user
                 var user = _mapper.Map<User>(userDto);
     
                 var result = await _userManager.CreateAsync(user ,userDto.Password);
     
                 var userToReturn = _mapper.Map<UserDto>(user);
+
+                if (userDto.UserRole == "student")
+                {
+                    
+                    StudentDto studentDto = new StudentDto();
+                    studentDto.Name = userDto.FullName;
+                    studentDto.Id = user.Id;
+                    studentDto.PhotoURL = "";
+                    studentDto.Email = user.Email;
+                    
+                    var student = _mapper.Map<Student>(studentDto);
+                
+                    _repository.Add(student);
+                
+                    if (await _repository.SaveChangesAsync()) {
+                        return Created($"/api/student/{studentDto.Id}", _mapper.Map<StudentDto>(student));
+                    }
+
+                }
+                else if (userDto.UserRole == "teacher")
+                {
+                    TeacherDto teacherDto = new TeacherDto();
+                    teacherDto.Name = userDto.FullName;
+                    teacherDto.Id = user.Id;
+                    teacherDto.PhotoURL = "";
+                    teacherDto.Email = user.Email;
+                    
+                    var teacher = _mapper.Map<Teacher>(teacherDto);    
+                    
+                    _repository.Add(teacher);
+                
+                    if (await _repository.SaveChangesAsync()) {
+                        return Created($"/api/teacher/{teacherDto.Id}", _mapper.Map<TeacherDto>(teacher));
+                    }    
+                }
     
                 if (result.Succeeded) 
                 {

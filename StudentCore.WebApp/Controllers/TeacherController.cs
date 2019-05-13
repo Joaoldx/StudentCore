@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using StudentCore.DomainModel.Entities;
 using StudentCore.DomainService.Repositories;
 using StudentCore.DomainService.Repositories.Core;
+using StudentCore.WebApp.Dtos;
 
 namespace StudentCore.WebApp.Controllers
 {
@@ -16,12 +17,12 @@ namespace StudentCore.WebApp.Controllers
     public class TeacherController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IStudentCoreRepository _repositopry;
+        private readonly IStudentCoreRepository _repository;
         
-        public TeacherController(IMapper mapper, StudentCoreRepository repository)
+        public TeacherController(IMapper mapper, IStudentCoreRepository repository)
         {
             _mapper = mapper;
-            _repositopry = repository;
+            _repository = repository;
         }
 
         [HttpGet]
@@ -29,25 +30,27 @@ namespace StudentCore.WebApp.Controllers
         {
             try
             {
-                var results = await _repositopry.GetAllTeachersAsync();
-                return Ok(results);
+                var results = await _repository.GetAllTeachersAsync();
+                var teacherDtos = _mapper.Map<IEnumerable<TeacherDto>>(results);
+                return Ok(teacherDtos);
+                
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco Dados Falhou");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Banco Dados Falhou {ex.Message}");
             }
         }
 
         [HttpGet("getById/{teacherId}")]
         public async Task<Teacher> GetById(Guid teacherId)
         {
-            return await _repositopry.GetTeacherByIdAsync(teacherId);
+            return await _repository.GetTeacherByIdAsync(teacherId);
         }
 
         [HttpGet("getByName/{teacherName}")]
         public async Task<ICollection<Teacher>> GetByName(string teacherName)
         {
-            return await _repositopry.GetAllTeachersByNameAsync(teacherName);
+            return await _repository.GetAllTeachersByNameAsync(teacherName);
         }
 
         [HttpPost]
@@ -55,8 +58,8 @@ namespace StudentCore.WebApp.Controllers
         {
             try
             {
-                _repositopry.Add(teacher);
-                if (await _repositopry.SaveChangesAsync())
+                _repository.Add(teacher);
+                if (await _repository.SaveChangesAsync())
                 {
                     return Created($"/api/teacher/{teacher.Id}", teacher);
                 }
@@ -69,20 +72,20 @@ namespace StudentCore.WebApp.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Post(Guid teacherId, Teacher model)
+        public async Task<IActionResult> Put(Guid teacherId, Teacher model)
         {
             try
             {
-                var teacher = await _repositopry.GetTeacherByIdAsync(teacherId);
+                var teacher = await _repository.GetTeacherByIdAsync(teacherId);
 
                 if (teacher == null)
                 {
                     return NotFound();
                 }
 
-                _repositopry.Update(model);
+                _repository.Update(model);
 
-                if (await _repositopry.SaveChangesAsync())
+                if (await _repository.SaveChangesAsync())
                 {
                     return Created($"/api/teacher/{model.Id}", model);
                 }
@@ -96,19 +99,19 @@ namespace StudentCore.WebApp.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Post(Guid teacherId)
+        public async Task<IActionResult> Delete(Guid teacherId)
         {
             try
             {
-                var teacher = await _repositopry.GetTeacherByIdAsync(teacherId);
+                var teacher = await _repository.GetTeacherByIdAsync(teacherId);
                 if (teacher == null)
                 {
                     return NotFound();
                 }
 
-                _repositopry.Delete(teacher);
+                _repository.Delete(teacher);
 
-                if (await _repositopry.SaveChangesAsync())
+                if (await _repository.SaveChangesAsync())
                 {
                     return Ok();
                 }

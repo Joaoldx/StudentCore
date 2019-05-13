@@ -5,5 +5,6 @@ namespace StudentCore.WebApp.Dtos
     public class PersonDto : EntityBase
     {
         public string PhotoURL { get; set; }
+        public string Email { get; set; }
     }
 }

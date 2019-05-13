@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -8,9 +9,9 @@ using StudentCore.DomainModel.Identity;
 
 namespace StudentCore.DataAccess.Context
 {
-    public class ApplicationDbContext : IdentityDbContext<User, Role, int,
-        IdentityUserClaim<int>, UserRole, IdentityUserLogin<int>,
-        IdentityRoleClaim<int>, IdentityUserToken<int>>
+    public class ApplicationDbContext : IdentityDbContext<User, Role, Guid,
+        IdentityUserClaim<Guid>, UserRole, IdentityUserLogin<Guid>,
+        IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
     {
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options)
