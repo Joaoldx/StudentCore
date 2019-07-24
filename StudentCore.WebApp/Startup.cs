@@ -19,8 +19,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using StudentCore.DataAccess.Context;
 using StudentCore.DomainModel.Identity;
-using StudentCore.DomainService.Repositories;
-using StudentCore.DomainService.Repositories.Core;
+using StudentCore.DataAccess.Repositories;
+using StudentCore.DataAccess.Repositories.Core;
 
 namespace StudentCore.WebApp
 {

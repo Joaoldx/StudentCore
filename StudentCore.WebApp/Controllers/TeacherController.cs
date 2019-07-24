@@ -6,8 +6,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StudentCore.DomainModel.Entities;
-using StudentCore.DomainService.Repositories;
-using StudentCore.DomainService.Repositories.Core;
+using StudentCore.DataAccess.Repositories;
+using StudentCore.DataAccess.Repositories.Core;
 using StudentCore.WebApp.Dtos;
 
 namespace StudentCore.WebApp.Controllers

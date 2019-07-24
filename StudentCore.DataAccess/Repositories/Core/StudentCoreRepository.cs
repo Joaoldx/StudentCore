@@ -6,7 +6,7 @@ using StudentCore.DataAccess.Context;
 using StudentCore.DomainModel.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace StudentCore.DomainService.Repositories.Core
+namespace StudentCore.DataAccess.Repositories.Core
 {
     public class StudentCoreRepository : IStudentCoreRepository
     {

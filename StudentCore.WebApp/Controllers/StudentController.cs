@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using AutoMapper;
 using StudentCore.DataAccess.Context;
 using StudentCore.DomainModel.Entities;
-using StudentCore.DomainService.Repositories;
-using StudentCore.DomainService.Repositories.Core;
+using StudentCore.DataAccess.Repositories;
+using StudentCore.DataAccess.Repositories.Core;
 using StudentCore.WebApp.Dtos;
 using StudentCore.WebApp.Helpers;
 

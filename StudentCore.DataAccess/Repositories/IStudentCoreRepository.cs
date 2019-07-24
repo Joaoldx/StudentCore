@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using StudentCore.DomainModel.Entities;
 
-namespace StudentCore.DomainService.Repositories
+namespace StudentCore.DataAccess.Repositories
 {
     public interface IStudentCoreRepository
     {

@@ -14,7 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using StudentCore.DomainModel.Entities;
 using StudentCore.DomainModel.Identity;
-using StudentCore.DomainService.Repositories;
+using StudentCore.DataAccess.Repositories;
 using StudentCore.WebApp.Dtos;
 
 namespace StudentCore.WebApp.Controllers
